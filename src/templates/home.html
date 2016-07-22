@@ -1,0 +1,25 @@
+<section class="section container-fluid">
+	<!-- add search pull here -->
+	<div class="pull-down-search" ng-class="{'open':isOpen}" >
+	  <form class="links">
+	  	<div class="input-group form-group">
+	    	<span class="input-group-addon fa fa-map-marker" aria-hidden="true""></span>
+	    	<input type="text" class="form-control" placeholder="location"/>
+	  	</div>
+	  	<div class="input-group form-group">
+	    	<span class="input-group-addon fa fa-calendar" aria-hidden="true""></span>
+	    	<input type="date" class="form-control" placeholder="date"/>
+	  	</div>
+	  	<div class="input-group form-group">
+	    	<span class="input-group-addon glyphicon glyphicon-ok" aria-hidden="true""></span>
+	    	<input type="time" class="form-control" placeholder="time"/>
+	  	</div>
+	    <button type="button" class="btn btn-primary center-block">Search</button>
+	  </form>
+	  <div class="search-icon fa fa-search fa-2x" ng-click="isOpen = !isOpen">
+	  </div>
+	</div>
+
+	<!-- maps-->
+	<div id="map"></div>  
+</section>
