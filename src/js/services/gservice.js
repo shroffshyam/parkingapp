@@ -1,11 +1,11 @@
-angular.module('ParkingApp.services.Gservice', ['ParkingApp.services.Search'])
-.factory('gservice', function($http, getNearbySpots, $document, $window){
+angular.module('ParkingApp.services.Gservice', [
+	'ParkingApp.services.Search', 
+	'InfoBoxService'
+])
+.factory('gservice', function(getNearbySpots, $document, $window){
 	//services our fatory will return
 	var googleMapServices = {};
-
 	var locations = [];
-	var selectedLat = 39.5;
-	var selectedLong = -98.35;
 
 	//function which refreshs the map with new data
 	googleMapServices.refresh = function(lat, lng){
@@ -33,17 +33,17 @@ angular.module('ParkingApp.services.Gservice', ['ParkingApp.services.Search'])
 			var contentString = '<div class="infoWindowContent">'+
 								'<p><b>'+spot.name+'</b></p>'+
 								'<hr>'+
-								'<div class="row"><div class="col-md-4"> Cost</div><div class="col-md-4"> Open Spot</div><div class="col-md-4"> distance</div></div>'+
-								'<button class="btn btn-primary block-center">Pay and Reserve</button>'+
+								'<div class="flex-container"><div class="flex-item"> Open Spots<br/> 2</div><div class="flex-item"> Cost<br/> $'+ spot.cost_per_minute +'</div><div class="flex-item"> Distance<br/>1 miles</div></div>'+
+								'<button class="btn btn-primary center-block">Pay and Reserve</button>'+
 								'</div>';
 			//convert each record into googls maps format
 			locations.push({
 				latlon: new google.maps.LatLng(spot.lat, spot.lng),
                 message: new google.maps.InfoWindow({
                         content: contentString,
-                         backgroundColor: '#007aff' 
-                    }),
-                    name: spot.name    
+                        width:300,
+                        backgroundColor: '#007aff' 
+                    })    
 			});
 		}
 
@@ -51,12 +51,10 @@ angular.module('ParkingApp.services.Gservice', ['ParkingApp.services.Search'])
 	};
 
 	var initialize = function(lat, lng){
-		var myLatLng = {lat:lat, lng:lng};
-		//not created
 		if(!map){
 			// Create a new map and place in the index.html page
 	        var map = new google.maps.Map(document.getElementById('map'), {
-	            zoom: 18 ,
+	            zoom: 16,
 	            center: new google.maps.LatLng(lat, lng),
 	            mapTypeId: google.maps.MapTypeId.ROADMAP
 	        });
@@ -74,23 +72,24 @@ angular.module('ParkingApp.services.Gservice', ['ParkingApp.services.Search'])
 			      scale: 5,
 			      fillColor: '#0080ff',
     			  fillOpacity: 0.8,
-    			  strokeColor: '#0000ff',
+    			  strokeColor: '#0000ff'
 			    },
 			})
-
 			//add listener for marker
 			google.maps.event.addListener(marker, 'click', function(e){
-
-	            // When clicked, open the selected marker's message
-	            currentSelectedMarker = n;
+				currentSelectedMarker = n;
 	            n.message.open(map, marker);
 	        });
+
+			//add event for inside info window click
+	         /*google.maps.event.addDomListener(n.message_,'click',function(e) {
+	            return function() {
+	              alert('clicked ' + cityList[i][0])
+	            }
+	          });*/
 		});
 
 	};
-
-	// Refresh the page upon window load. Use the initial latitude and longitude
-	google.maps.event.addDomListener(window, 'load', googleMapServices.refresh(selectedLat, selectedLong));
 
 	return googleMapServices;
 });

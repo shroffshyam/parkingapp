@@ -4,7 +4,6 @@ angular.module('ParkingApp.services.Search', [])
 	return function(lat, lng, done){
 		$http.get('http://ridecellparking.herokuapp.com/api/v1/parkinglocations/search?lat='+lat+'&lng='+lng)
 		.success(function(data){
-			console.log(data, "inside getnearbyspots");
 			done(data);
 		})
 		.error(function(){

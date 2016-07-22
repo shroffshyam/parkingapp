@@ -2,6 +2,21 @@
 @import "mixins.less";
 @import "variables.less";
 
+.navbar-absolute-top{
+    background-color:#007aff;
+    color:#fff;
+    font-weight:600;
+}
+
+.main-container{
+    position:fixed;
+    top:50px;
+    bottom:50px;
+    right:0;
+    left:0;
+    padding:0;
+}
+
 #map{
     height:100%; 
     min-height:500px;
@@ -20,7 +35,7 @@
     margin: 0 auto;
     padding: 20px;
     transition: transform 2s ease-in-out;
-    transform:translateY(-100%);
+    transform:translateY(-95%);
 
     &.open{
     	transform:translateY(0%);
@@ -42,4 +57,15 @@
 			top:25%;
 		}
 	}
+}
+
+.flex-container{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.flex-item{
+    flex: 0 1 auto;
+    text-align:center;
 }

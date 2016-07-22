@@ -1,7 +1,7 @@
 angular.module('ParkingApp', [
-  'ngRoute',
-  'mobile-angular-ui',
-  'ParkingApp.controllers.Main'
+	'ngRoute',
+  	'mobile-angular-ui',
+  	'ParkingApp.controllers.Main'
 ])
 
 .config(function($routeProvider) {
