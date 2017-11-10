@@ -1,12 +1,12 @@
-# Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
+# Parking spot app [![bitHound Score][bithound-img]][bithound-url]
 
-A PhoneGap Hello World template
+A PhoneGap, Hybrid mobile app which use google maps and shows the parrking spot near ur approximation
 
 ## Usage
 
 #### PhoneGap CLI
 
-The hello-world template is the default when you create a new application using the [phonegap-cli][phonegap-cli-url].
+Create a new application using the [phonegap-cli][phonegap-cli-url].
 
     phonegap create my-app
 
